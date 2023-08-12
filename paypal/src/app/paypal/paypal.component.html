@@ -1,0 +1,10 @@
+<p>paypal works!</p>
+<!-- {{product.title}} -->
+
+<div>
+    <h1> Product {{product.title}} </h1>
+    <h1>Description--</h1><p>{{product.desription}}</p>
+    <img width="400" [src]="product.image" >
+    <button type="button" class="btn btn-light" (click)="payment(product)">buy product</button>
+</div>
+<div id="paypal"></div>

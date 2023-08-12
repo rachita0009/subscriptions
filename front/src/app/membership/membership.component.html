@@ -1,0 +1,123 @@
+<div class="container">
+    <h5 class="text-center pricing-table-subtitle">SUSCRIPTION PLAN</h5>
+    <h1 class="text-center pricing-table-title">Pricing Table</h1>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let price of prices">
+            <div class="card pricing-card pricing-plan-basic">
+                <div class="card-body">
+                    <i class="mdi mdi-cube-outline pricing-plan-icon"></i>
+                    <p class="pricing-plan-title">{{price.title}}</p>
+                    <h3 class="pricing-plan-cost ml-auto">${{price.price}}</h3>
+                    <ul class="pricing-plan-features">
+                        <li *ngFor="let feature of price.features">{{feature}}</li>
+                        <!-- <li>100 participants max</li>
+                            <li>Custom Hold Music</li>
+                            <li>10 participants max</li> -->
+                    </ul>
+                    <!-- <a  class="btn pricing-plan-purchase-btn" data-toggle="modal"
+                        data-target="#exampleModal">suscribe</a> -->
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                        (click)="click(price)">pay for Suscribe ${{price.price}}</button>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-md-4">
+                <div class="card pricing-card pricing-card-highlighted  pricing-plan-pro">
+                    <div class="card-body">
+                        <i class="mdi mdi-trophy pricing-plan-icon"></i>
+                        <p class="pricing-plan-title">Pro</p>
+                        <h3 class="pricing-plan-cost ml-auto">$49</h3>
+                        <ul class="pricing-plan-features">
+                            <li>Unlimited conferences</li>
+                            <li>100 participants max</li>
+                            <li>Custom Hold Music</li>
+                            <li>10 participants max</li>
+                        </ul>
+                        <a routerLink="suscribe" class="btn pricing-plan-purchase-btn">Suscribe</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card pricing-card pricing-plan-enterprise">
+                    <div class="card-body">
+                        <i class="mdi mdi-wallet-giftcard pricing-plan-icon"></i>
+                        <p class="pricing-plan-title">Enterprise</p>
+                        <h3 class="pricing-plan-cost ml-auto">$69</h3>
+                        <ul class="pricing-plan-features">
+                            <li>Unlimited conferences</li>
+                            <li>100 participants max</li>
+                            <li>Custom Hold Music</li>
+                            <li>10 participants max</li>
+                        </ul>
+                        <a routerLink="suscribe" class="btn pricing-plan-purchase-btn">Suscribe</a>
+                    </div>
+                </div>
+            </div> -->
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Subscription Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="SubscriptionForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="inputName4">Name</label>
+                            <input type="text" formControlName="name" class="form-control" id="inputName4"
+                                placeholder="Name" required
+                                [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                                <div *ngIf="f['name'].errors['required']">Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" formControlName="email" class="form-control" id="inputEmail4"
+                                placeholder="Email" required
+                                [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                                <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" hidden>
+                            <label for="inputPassword4">Plan Tittle</label>
+                            <input type="text" formControlName="title" class="form-control" id="inputtitle4"
+                                placeholder="title">
+                        </div>
+                        <div class="form-group col-md-6" hidden>
+                            <label for="inputPassword4">price</label>
+                            <input type="text" formControlName="price" class="form-control ttttt" id="inputPassword4"
+                                placeholder="price" value="">
+                        </div>
+                    </div>
+
+                    <!-- <input class="" id="" [value]="" />
+                    <input class="" id="" [value]="{{}}"> -->
+
+                    <div class="modal-footer" class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="submit" class="btn btn-primary" >Save</button> -->
+                        <button type="btn" class="btn btn-primary" (click)="makePayment()">Make payment</button>
+
+                        <a></a>
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
